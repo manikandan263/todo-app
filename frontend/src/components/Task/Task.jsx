@@ -3,13 +3,12 @@ import "./task.css";
 import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { convertLength } from '@mui/material/styles/cssUtils';
-
 
 function Task({ task, id, t_id }) {
     const { dispatch } = useContext(TaskContext);
     // console.log("base",process.env.REACT_APP_BASE_URL);
-    const base = process.env.REACT_APP_BASE_URL|| "http://localhost:8000";
+    const base = process.env.REACT_APP_BASE_URL;
+    console.log(base)
     const token = JSON.parse(localStorage.getItem("authToken"));
     console.log("ids",t_id ,task.id,task)
     

@@ -11,8 +11,10 @@ function Register() {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     }
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    console.log(baseUrl)
      const handleGoogleSubmit = () => {
-        window.open("http://localhost:8000/auth/google", "_self");
+        window.open(`${baseUrl}/auth/google`, "_self");
     };
 
     const handleSubmit = async (e) => {
