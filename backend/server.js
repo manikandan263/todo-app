@@ -19,10 +19,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 // MongoDB config
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
+mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"))
   .catch(err => console.log("MongoDB error:", err));
 
 // Middleware
@@ -74,13 +71,13 @@ passport.deserializeUser(async (id, done) => {
 
 // Google Auth Routes
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-
+const baseUrl= process.env.BACKEND_URL;
 app.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "http://localhost:5000/login" }),
+  passport.authenticate("google", { failureRedirect: `${baseUrl}/login` }),
   (req, res) => {
     const token = createToken(req.user._id);
     
-    res.redirect(`http://localhost:3000/oauth-success?token=${token}`);
+    res.redirect(`${baseUrl}/oauth-success?token=${token}`);
   }
 );
 
@@ -90,4 +87,4 @@ app.use("/api/task", taskRouter);
 app.use("/api/forgotPassword", forgotPasswordRouter);
 
 // Start server
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running ....`));

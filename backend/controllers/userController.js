@@ -114,9 +114,9 @@ const registerNewUser = async ({ name, email, password }) => {
         const user = await newUser.save();
         const token = createToken(user._id);
         
-        res.status(200).json({ user ,token});
+        return { user ,token};
   } catch (error) {
-    res.status(502).json({ message: error.message });
+     return { message: error.message };
   }
 };
 
