@@ -15,6 +15,7 @@ import { registerNewUser,createToken } from "./controllers/userController.js";
 
 dotenv.config();
 
+const baseUrl= process.env.FRONTEND_URL;
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -24,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connecte
   .catch(err => console.log("MongoDB error:", err));
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: ["http://localhost:3000",baseUrl], credentials: true }));
 app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET || 'defaultsecret',
@@ -72,7 +73,6 @@ passport.deserializeUser(async (id, done) => {
 
 // Google Auth Routes
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-const baseUrl= process.env.BACKEND_URL;
 app.get("/auth/google/callback",
   passport.authenticate("google", { failureRedirect: `${baseUrl}/login` }),
   (req, res) => {
