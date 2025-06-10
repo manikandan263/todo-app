@@ -13,8 +13,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) to-do list application feat
 📁 [https://github.com/manikandan263/todo-app](https://github.com/manikandan263/todo-app)
 
 ---
-
-## 🏗️ System Architecture & Deployment Diagram
+# 🏗️ Todo App - System Architecture & Deployment Diagram
 
 ```mermaid
 graph TB
@@ -23,12 +22,12 @@ graph TB
     end
     
     subgraph "Frontend - Netlify"
-        FE[🎨 React App<br/>mani-todo2.netlify.app<br/>Port: 443 HTTPS]
+        FE[🎨 React App<br/>mani-todo2.netlify.app<br/>HTTPS Port 443]
         FE_Build[📦 Build Process<br/>npm run build]
     end
     
     subgraph "Backend - Render.com"
-        BE[🚀 Node.js/Express API<br/>todo-app-b-zr39.onrender.com<br/>Port: 8000]
+        BE[🚀 Node.js Express API<br/>todo-app-b-zr39.onrender.com<br/>Port 8000]
         Auth[🔐 JWT Authentication]
         Routes[📋 API Routes<br/>/api/todos<br/>/api/auth]
     end
@@ -41,7 +40,7 @@ graph TB
     
     subgraph "Development"
         GitHub[📁 GitHub Repository<br/>Source Code]
-        Local[💻 Local Development<br/>localhost:3000 (FE)<br/>localhost:8000 (BE)]
+        Local[💻 Local Development<br/>Frontend: localhost:3000<br/>Backend: localhost:8000]
     end
     
     %% User interactions
@@ -49,7 +48,7 @@ graph TB
     User -->|Login| GoogleOAuth
     
     %% Frontend to Backend
-    FE -->|API Calls<br/>HTTPS/REST| BE
+    FE -->|API Calls HTTPS/REST| BE
     FE -->|Authentication| Auth
     
     %% Backend connections
@@ -77,23 +76,6 @@ graph TB
     class GoogleOAuth,Gmail external
     class GitHub,Local dev
 ```
-
-### 🔄 Data Flow
-1. **User Authentication**: Google OAuth → JWT Token → Secure API Access
-2. **Task Management**: React UI → REST API → MongoDB → Response
-3. **Email Notifications**: Task Events → Gmail SMTP → User Email
-4. **Real-time Updates**: Frontend polling → Backend API → Database sync
-
----
-
-## 🚀 Features
-
-- ✅ Google OAuth login
-- ✍️ Create, edit, delete tasks
-- 📬 Email notifications using Gmail (App Password required)
-- 📅 Task completion tracking
-- 💻 Responsive design with clean UI
-- 🔐 Token-based authentication (JWT)
 
 ---
 
