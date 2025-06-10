@@ -5,7 +5,6 @@ import TokenContext from '../../context/TokenContext';
 import axios from "../../Axios/axios.js"
 import "./createTask.css"
 function CreateTask() {
-    const { dispatch } = useContext(TaskContext)
     const {userToken} = useContext(TokenContext)
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -19,7 +18,6 @@ function CreateTask() {
               }
             })
             console.log("hi",res.data)
-            const response = res.data.data;
             // showToast();
         //      dispatch({
         //     type: "ADD_TASK",

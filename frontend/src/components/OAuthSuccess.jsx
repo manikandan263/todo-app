@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import TokenContext from '../context/TokenContext.js';
 
 function OAuthSuccess() {
-  const { tokenDispatch } = useContext(TokenContext);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
